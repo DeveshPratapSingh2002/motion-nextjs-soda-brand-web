@@ -1,8 +1,17 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Header, Footer, BigText } from "@/components";
 import "./globals.css";
+import type { Metadata } from "next";
+import localFont from 'next/font/local';
+import { ViewCanvas } from "@/components/ViewCanvas";
 
-const inter = Inter({ subsets: ["latin"] });
+const alpino = localFont({
+  src: "../../public/fonts/Alpino-Variable.woff2",
+  display: "swap"
+  , weight: "100 900"
+  , variable: "--font-alpino"
+})
+
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,8 +24,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className={alpino.variable}>
+      <body className="overflow-x-hidden bg-yellow-300" >
+        <Header />
+        <main>
+        {children}
+        <ViewCanvas />
+        </main>
+
+      </body>
     </html>
   );
 }
